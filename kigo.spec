@@ -5,14 +5,14 @@
 # Source0 file verified with key 0xBB463350D6EF31EF (heiko@shruuf.de)
 #
 Name     : kigo
-Version  : 21.12.3
-Release  : 38
-URL      : https://download.kde.org/stable/release-service/21.12.3/src/kigo-21.12.3.tar.xz
-Source0  : https://download.kde.org/stable/release-service/21.12.3/src/kigo-21.12.3.tar.xz
-Source1  : https://download.kde.org/stable/release-service/21.12.3/src/kigo-21.12.3.tar.xz.sig
+Version  : 22.04.0
+Release  : 39
+URL      : https://download.kde.org/stable/release-service/22.04.0/src/kigo-22.04.0.tar.xz
+Source0  : https://download.kde.org/stable/release-service/22.04.0/src/kigo-22.04.0.tar.xz
+Source1  : https://download.kde.org/stable/release-service/22.04.0/src/kigo-22.04.0.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
-License  : GFDL-1.2 GPL-2.0 GPL-3.0
+License  : BSD-3-Clause CC0-1.0 GFDL-1.2 GPL-2.0 GPL-3.0
 Requires: kigo-bin = %{version}-%{release}
 Requires: kigo-data = %{version}-%{release}
 Requires: kigo-license = %{version}-%{release}
@@ -21,7 +21,6 @@ BuildRequires : buildreq-cmake
 BuildRequires : buildreq-kde
 BuildRequires : extra-cmake-modules-data
 BuildRequires : libkdegames-dev
-BuildRequires : qtbase-dev mesa-dev
 
 %description
 Kigo - Go board game by KDE
@@ -71,15 +70,15 @@ locales components for the kigo package.
 
 
 %prep
-%setup -q -n kigo-21.12.3
-cd %{_builddir}/kigo-21.12.3
+%setup -q -n kigo-22.04.0
+cd %{_builddir}/kigo-22.04.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1646540530
+export SOURCE_DATE_EPOCH=1650673516
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -95,14 +94,17 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1646540530
+export SOURCE_DATE_EPOCH=1650673516
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kigo
-cp %{_builddir}/kigo-21.12.3/LICENSES/GFDL-1.2-or-later.txt %{buildroot}/usr/share/package-licenses/kigo/7697008f58568e61e7598e796eafc2a997503fde
-cp %{_builddir}/kigo-21.12.3/LICENSES/GPL-2.0-only.txt %{buildroot}/usr/share/package-licenses/kigo/3e8971c6c5f16674958913a94a36b1ea7a00ac46
-cp %{_builddir}/kigo-21.12.3/LICENSES/GPL-3.0-only.txt %{buildroot}/usr/share/package-licenses/kigo/2123756e0b1fc8243547235a33c0fcabfe3b9a51
-cp %{_builddir}/kigo-21.12.3/LICENSES/LicenseRef-KDE-Accepted-GPL.txt %{buildroot}/usr/share/package-licenses/kigo/7d9831e05094ce723947d729c2a46a09d6e90275
-cp %{_builddir}/kigo-21.12.3/LICENSES/LicenseRef-KDE-Accepted-GPL.txt %{buildroot}/usr/share/package-licenses/kigo/7d9831e05094ce723947d729c2a46a09d6e90275
+cp %{_builddir}/kigo-22.04.0/CMakePresets.json.license %{buildroot}/usr/share/package-licenses/kigo/29fb05b49e12a380545499938c4879440bd8851e
+cp %{_builddir}/kigo-22.04.0/LICENSES/BSD-3-Clause.txt %{buildroot}/usr/share/package-licenses/kigo/9950d3fdce1cff1f71212fb5abd31453c6ee2f8c
+cp %{_builddir}/kigo-22.04.0/LICENSES/CC0-1.0.txt %{buildroot}/usr/share/package-licenses/kigo/8287b608d3fa40ef401339fd907ca1260c964123
+cp %{_builddir}/kigo-22.04.0/LICENSES/GFDL-1.2-or-later.txt %{buildroot}/usr/share/package-licenses/kigo/7697008f58568e61e7598e796eafc2a997503fde
+cp %{_builddir}/kigo-22.04.0/LICENSES/GPL-2.0-only.txt %{buildroot}/usr/share/package-licenses/kigo/3e8971c6c5f16674958913a94a36b1ea7a00ac46
+cp %{_builddir}/kigo-22.04.0/LICENSES/GPL-3.0-only.txt %{buildroot}/usr/share/package-licenses/kigo/2123756e0b1fc8243547235a33c0fcabfe3b9a51
+cp %{_builddir}/kigo-22.04.0/LICENSES/LicenseRef-KDE-Accepted-GPL.txt %{buildroot}/usr/share/package-licenses/kigo/7d9831e05094ce723947d729c2a46a09d6e90275
+cp %{_builddir}/kigo-22.04.0/LICENSES/LicenseRef-KDE-Accepted-GPL.txt %{buildroot}/usr/share/package-licenses/kigo/7d9831e05094ce723947d729c2a46a09d6e90275
 pushd clr-build
 %make_install
 popd
@@ -205,9 +207,12 @@ popd
 %files license
 %defattr(0644,root,root,0755)
 /usr/share/package-licenses/kigo/2123756e0b1fc8243547235a33c0fcabfe3b9a51
+/usr/share/package-licenses/kigo/29fb05b49e12a380545499938c4879440bd8851e
 /usr/share/package-licenses/kigo/3e8971c6c5f16674958913a94a36b1ea7a00ac46
 /usr/share/package-licenses/kigo/7697008f58568e61e7598e796eafc2a997503fde
 /usr/share/package-licenses/kigo/7d9831e05094ce723947d729c2a46a09d6e90275
+/usr/share/package-licenses/kigo/8287b608d3fa40ef401339fd907ca1260c964123
+/usr/share/package-licenses/kigo/9950d3fdce1cff1f71212fb5abd31453c6ee2f8c
 
 %files locales -f kigo.lang
 %defattr(-,root,root,-)
